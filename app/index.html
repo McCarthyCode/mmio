@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Portfolio of Matt McCarthy, a full-stack developer based in Chicago, IL with 7+ years of experience in healthcare and commercial web applications.">
+  <title>Matt McCarthy | Full-stack Developer</title>
+  <link rel="icon" type="image/png" href="favicon.ico">
+
+  <!-- Script: custom -->
+  <script src="static/color-scheme.js"></script>
+
+  <!-- Stylesheet: custom -->
+  <link rel="stylesheet" href="static/style.css">
+
+  <!-- Stylesheet: Bootstrap -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        integrity="sha256-2FMn2Zx6PuH5tdBQDRNwrOo60ts5wWPC9R8jK67b3t4="
+        crossorigin="anonymous">
+
+  <!-- Stylesheet: Bootstrap Icons -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        integrity="sha256-pdY4ejLKO67E0CM2tbPtq1DJ3VGDVVdqAR6j3ZwdiE4="
+        crossorigin="anonymous">
+
+  <!-- Fonts: preconnect then load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+  <!-- Script: Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+          integrity="sha256-ew8UiV1pJH/YjpOEBInP1HxVvT/SfrCmwSoUzF9JIgc="
+          crossorigin="anonymous"
+          defer></script>
+</head>
+
+<body>
+  <aside class="bottom-0 container d-flex end-0 flex-column justify-content-lg-center position-fixed start-0 top-0 z-1"
+         aria-label="Navigation tools">
+    <div class="justify-content-center justify-content-lg-start navbar row">
+      <div id="nav-sections" class="col-12 col-lg-3 g-0 gx-lg-5 justify-content-center nav">
+        <div class="d-flex flex-column justify-content-lg-between justify-content-start py-lg-5">
+          <div class="pt-lg-4">
+            <div class="visually-hidden-max-lg mb-5" aria-hidden="true">
+              <h1>Matt McCarthy</h1>
+              <p>
+                <strong class="text-nowrap">Web Application Developer</strong><br />
+                <span class="text-nowrap">Chicago, IL</span>
+              </p>
+            </div>
+            <nav aria-label="Visual tabs for scrolling to sections within page">
+              <ul class="card flex-lg-column flex-row fw-bold nav nav-pills px-3 py-2 rounded-4"
+                  aria-label="Section headers">
+                <li class="nav-item" aria-label="About">
+                  <a class="nav-link rounded-4" href="#about">About</a>
+                </li>
+                <li class="nav-item" aria-label="Skills">
+                  <a class="nav-link rounded-4" href="#skills">Skills</a>
+                </li>
+                <li class="nav-item" aria-label="Experience">
+                  <a class="nav-link rounded-4" href="#experience">Experience</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <ul class="d-lg-flex d-none flex-row justify-content-around nav nav-pills px-3 py-2" aria-hidden="true">
+            <li class="card nav-item rounded-4">
+              <a href="https://github.com/mccarthycode"
+                 class="nav-link rounded-4"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <i class="bi bi-github fs-4"></i>
+              </a>
+            </li>
+            <li class="card nav-item rounded-4">
+              <a href="https://www.linkedin.com/in/mccarthycode"
+                 class="nav-link rounded-4"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <i class="bi bi-linkedin fs-4"></i>
+              </a>
+            </li>
+            <li class="card nav-item rounded-4">
+              <a href="https://stackoverflow.com/users/2858094/matt-mccarthy?tab=profile"
+                 class="nav-link rounded-4"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <i class="bi bi-stack-overflow fs-4"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main class="d-flex flex-column min-vh-100" aria-label="Content">
+    <div class="flex-grow-1">
+      <div class="container">
+        <div class="row">
+          <article class="col col-12 col-lg-9 offset-lg-3 pb-5"
+                   data-bs-spy="scroll"
+                   data-bs-target="#nav-sections"
+                   aria-label="Profile section">
+            <div id="about">
+              <div class="d-lg-none my-5 text-center">
+                <h1>Matt McCarthy</h1>
+                <p class="visually-hidden">Web Application Developer based in Chicago, IL</p>
+                <p aria-hidden="true">
+                  <strong class="text-nowrap">Web Application Developer</strong><br />
+                  <span class="text-nowrap">Chicago, IL</span>
+                </p>
+                <ul class="flex-row gap-3 justify-content-center nav nav-pills px-3 py-2 social"
+                    aria-label="External profile links">
+                  <li class="card nav-item rounded-4" aria-label="GitHub">
+                    <a href="https://github.com/mccarthycode"
+                       class="nav-link rounded-4"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      <span class="visually-hidden">GitHub</span>
+                      <i class="bi bi-github fs-4" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="card nav-item rounded-4" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/mccarthycode"
+                       class="nav-link rounded-4"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      <span class="visually-hidden">LinkedIn</span>
+                      <i class="bi bi-linkedin fs-4" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="card nav-item rounded-4" aria-label="Stack Overflow">
+                    <a href="https://stackoverflow.com/users/2858094/matt-mccarthy?tab=profile"
+                       class="nav-link rounded-4"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      <span class="visually-hidden">Stack Overflow</span>
+                      <i class="bi bi-stack-overflow fs-4" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <h2 class="mb-4">Professional Summary</h2>
+              <div class="card mb-5 pt-3 px-3 text-body-secondary">
+                <p class="visually-hidden">
+                  Full-stack Software Engineer with 7+ years of experience building enterprise web applications in regulated healthcare and commercial environments. Proficient in Angular, TypeScript, and Python/Django, with hands-on experience in cloud-native infrastructure using Docker, GCP, and Kubernetes. Designed and delivered HIPAA and FDA 21 CFR Part 11-compliant systems supporting 10,000+ daily users across mission-critical healthcare platforms.
+                </p>
+                <p aria-hidden="true">
+                  <strong class="text-body" aria-label="Full-stack Software Engineer">Full-stack Software Engineer</strong> with 7+ years of experience building enterprise web applications in regulated <strong class="text-body" aria-label="Healthcare and commercial environments">healthcare and commercial</strong> environments.
+                </p>
+                <p aria-hidden="true">
+                  Proficient in <strong class="text-body" aria-label="Angular, TypeScript, and Python/Django">Angular, TypeScript, and Python/Django</strong>, with hands-on experience in cloud-native infrastructure using <strong class="text-body" aria-label="Docker, GCP, and Kubernetes">Docker, GCP, and Kubernetes</strong>.
+                </p>
+                <p aria-hidden="true">
+                  Designed and delivered <strong class="text-body" aria-label="HIPAA and FDA 21 CFR Part 11">HIPAA and FDA 21 CFR Part 11</strong>-compliant systems supporting <strong class="text-body" aria-label="10,000+ daily users">10,000+ daily users</strong> across mission-critical healthcare platforms.
+                </p>
+              </div>
+            </div>
+            <div id="skills">
+              <h2 class="mb-4">Core Competencies</h2>
+              <div class="container mb-5 px-0">
+                <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 g-3">
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="align-items-baseline d-flex justify-content-between mb-2" aria-hidden="true">
+                          <h3 class="fs-5">Frontend</h3>
+                          <i class="bi bi-display fs-4"></i>
+                        </div>
+                        <ul class="d-inline-flex flex-wrap gap-1 list-unstyled m-0" aria-label="Frontend">
+                          <li class="badge bg-body text-body-emphasis" aria-label="Angular">Angular</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="React">React</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="TypeScript">TypeScript</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="JavaScript (ES5+)">JavaScript (ES5+)</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="RxJS">RxJS</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="HTML5">HTML5</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="CSS3">CSS3</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Bootstrap">Bootstrap</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="align-items-baseline d-flex justify-content-between mb-2" aria-hidden="true">
+                          <h3 class="fs-5">Backend</h3>
+                          <i class="bi bi-hdd-rack fs-4"></i>
+                        </div>
+                        <ul class="d-inline-flex flex-wrap gap-1 list-unstyled m-0" aria-label="Backend">
+                          <li class="badge bg-body text-body-emphasis" aria-label="Python">Python</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Django">Django</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Flask">Flask</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Node.js">Node.js</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="REST APIs">REST APIs</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="GraphQL">GraphQL</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="align-items-baseline d-flex justify-content-between mb-2" aria-hidden="true">
+                          <h3 class="fs-5">Databases & Cloud</h3>
+                          <i class="bi bi-database fs-4"></i>
+                        </div>
+                        <ul class="d-inline-flex flex-wrap gap-1 list-unstyled m-0" aria-label="Databases & Cloud">
+                          <li class="badge bg-body text-body-emphasis" aria-label="SQL">SQL</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="PostgreSQL">PostgreSQL</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="MariaDB">MariaDB</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="GCP">GCP</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="AWS">AWS</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Azure">Azure</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="align-items-baseline d-flex justify-content-between mb-2" aria-hidden="true">
+                          <h3 class="fs-5">DevOps & Tools</h3>
+                          <i class="bi bi-tools fs-4"></i>
+                        </div>
+                        <ul class="d-inline-flex flex-wrap gap-1 list-unstyled m-0" aria-label="DevOps & Tools">
+                          <li class="badge bg-body text-body-emphasis" aria-label="Docker">Docker</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Kubernetes">Kubernetes</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Git">Git</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="CI/CD">CI/CD</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Linux">Linux</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Microservices">Microservices</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="align-items-baseline d-flex justify-content-between mb-2" aria-hidden="true">
+                          <h3 class="fs-5">Testing</h3>
+                          <i class="bi bi-list-check fs-4"></i>
+                        </div>
+                        <ul class="d-inline-flex flex-wrap gap-1 list-unstyled m-0" aria-label="Testing">
+                          <li class="badge bg-body text-body-emphasis" aria-label="PyTest">PyTest</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Unit Testing">Unit Testing</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="E2E Testing">E2E Testing</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Testing Frameworks">Testing Frameworks</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Code Review">Code Review</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="align-items-baseline d-flex justify-content-between mb-2" aria-hidden="true">
+                          <h3 class="fs-5">Methodologies & Compliance</h3>
+                          <i class="bi bi-clipboard-check fs-4"></i>
+                        </div>
+                        <ul class="d-inline-flex flex-wrap gap-1 list-unstyled m-0"
+                            aria-label="Methodologies & Compliance">
+                          <li class="badge bg-body text-body-emphasis" aria-label="Agile">Agile</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="Scrum">Scrum</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="SDLC">SDLC</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="HIPAA Compliance">HIPAA Compliance</li>
+                          <li class="badge bg-body text-body-emphasis" aria-label="FDA 21 CFR Part 11">FDA 21 CFR Part 11</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="experience">
+              <h2 class="mb-4">Professional Experience</h2>
+              <ul class="d-flex flex-column gap-4 list-unstyled"
+                  aria-label="Work history listed in reverse chronological order">
+                <li class="d-sm-flex" aria-label="Professional development experience from 2025 to present">
+                  <p class="dates text-nowrap text-uppercase" aria-hidden="true">2025 &ndash; present</p>
+                  <div>
+                    <h3 class="fs-5" aria-hidden="true">
+                      <span class="text-nowrap">Professional Development</span>
+                    </h3>
+                    <p aria-hidden="true">
+                      <span class="text-nowrap">Web Application Developer</span> &mdash;
+                      <span class="text-nowrap">Chicago, IL</span>
+                    </p>
+                    <ul class="d-flex flex-column gap-3 list-unstyled text-secondary-emphasis"
+                        aria-label="Single bullet point">
+                      <li aria-label="Learning automation tools and frameworks to streamline development processes and enhance testing capabilities, with a focus on improving efficiency and code quality in web application development">
+                        Learning automation tools and frameworks to streamline development processes and enhance testing capabilities, with a focus on improving efficiency and code quality in web application development
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="d-sm-flex"
+                    aria-label="Software engineering experience at Zimmer Biomet from 2022 to 2025, following acquisition of Medstrat">
+                  <p class="dates text-nowrap text-uppercase" aria-hidden="true">2022 &ndash; 2025</p>
+                  <div>
+                    <h3 class="fs-5" aria-hidden="true">
+                      <span class="text-nowrap">Zimmer Biomet</span>
+                      <span class="text-nowrap">(acquired Medstrat)</span>
+                    </h3>
+                    <p aria-hidden="true">
+                      <span class="text-nowrap">Software Engineer</span> &mdash;
+                      <span class="text-nowrap">Downers Grove, IL</span>
+                    </p>
+                    <ul class="d-flex flex-column gap-3 list-unstyled text-secondary-emphasis"
+                        aria-label="Four bullet points">
+                      <li aria-label="Engineered and maintained a regulated orthopedic imaging platform (PACS, HIPAA/FDA 21 CFR Part 11) used by over 20% of U.S. orthopedic surgeons, supporting a system archiving 1B+ medical images">
+                        Engineered and maintained a regulated orthopedic imaging platform (PACS, HIPAA/FDA 21 CFR Part 11) used by over 20% of U.S. orthopedic surgeons, supporting a system archiving 1B+ medical images
+                      </li>
+                      <li aria-label="Architected and delivered UI navigation features across 100+ clinical workflows in a high-stakes surgical planning platform serving 10,000+ daily active users">
+                        Architected and delivered UI navigation features across 100+ clinical workflows in a high-stakes surgical planning platform serving 10,000+ daily active users
+                      </li>
+                      <li aria-label="Refactored 15+ Python daemons orchestrating DICOM image processing pipelines, improving throughput and ensuring stability across systems managing 2+ petabytes of protected health information">
+                        Refactored 15+ Python daemons orchestrating DICOM image processing pipelines, improving throughput and ensuring stability across systems managing 2+ petabytes of protected health information
+                      </li>
+                      <li aria-label="Eliminated recurring pipeline failures through targeted performance profiling and code optimization, reducing incident frequency in critical surgical planning data workflows">
+                        Eliminated recurring pipeline failures through targeted performance profiling and code optimization, reducing incident frequency in critical surgical planning data workflows
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="d-sm-flex"
+                    aria-label="Full-stack web development experience at independent consulting practice McCarthy Code from 2018 to 2022">
+                  <p class="dates text-nowrap text-uppercase" aria-hidden="true">2018 &ndash; 2022</p>
+                  <div>
+                    <h3 class="fs-5" aria-hidden="true">
+                      <span class="text-nowrap">McCarthy Code</span>
+                      <span class="text-nowrap">(Independent Consulting Practice)</span>
+                    </h3>
+                    <p aria-hidden="true">
+                      <span class="text-nowrap">Full-stack Web Developer</span> &mdash;
+                      <span class="text-nowrap">Chicago, IL</span>
+                    </p>
+                    <ul class="d-flex flex-column gap-3 list-unstyled text-secondary-emphasis"
+                        aria-label="Three bullet points">
+                      <li aria-label="Successfully delivered 6 client engagements on time and within scope over 4 years, achieving 100% retention across contracts ranging from 3 to 18 months">
+                        Delivered 6 client engagements on time and within scope over 4 years, achieving 100% retention across contracts ranging from 3 to 18 months
+                      </li>
+                      <li aria-label="Designed and launched a business-to-business platform serving 20+ Chicago small businesses, enabling local commerce connections across the Chicago metro area">
+                        Designed and launched a business-to-business platform serving 20+ Chicago small businesses, enabling local commerce connections across the Chicago metro area
+                      </li>
+                      <li aria-label="Built a reusable Angular/TypeScript component library and Django template system that reduced project scaffolding time by approximately 33% (3 weeks to 2 weeks) across 4+ repeat client engagements">
+                        Built a reusable Angular/TypeScript component library and Django template system that reduced project scaffolding time by ~33% (3 weeks &rightarrow; 2 weeks) across 4+ repeat client engagements
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-body bg-opacity-50 py-5 text-center">
+      <div class="container my-4">
+        <p class="mb-0 small visually-hidden" aria-label="Copyright notice">Copyright 2026 Matt McCarthy. All rights reserved.</p>
+        <p class="mb-0 small" aria-hidden="true">
+          <span class="text-nowrap">&copy; 2026 Matt McCarthy.</span>
+          <span class="text-nowrap">All rights reserved.</span>
+        </p>
+      </div>
+    </footer>
+  </main>
+</body>
+
+</html>

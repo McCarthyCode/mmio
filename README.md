@@ -14,6 +14,8 @@ Built with plain HTML, CSS, and Bootstrap. Served via Nginx in a Docker containe
 
 ```
 .
+├── LICENSE.md
+├── README.md
 ├── app
 │   ├── favicon.ico
 │   ├── index.html                      # Single-page portfolio
@@ -23,11 +25,15 @@ Built with plain HTML, CSS, and Bootstrap. Served via Nginx in a Docker containe
 │       ├── triangles_dark.svg          # Background asset (dark mode)
 │       └── triangles_light.svg         # Background asset (light mode)
 ├── docker-compose.yaml                 # Service definitions
-├── LICENSE.md
-├── nginx.conf                          # Nginx server configuration
-└── README.md
+└── nginx
+    └── conf.d                          # Nginx server configurations
+        ├── mattmccarthy.io.conf
+        ├── mattmccarthy.net.conf
+        ├── mattmccarthy.org.conf
+        ├── mccarthycode.com.conf
+        └── redirect-http-to-https.conf
 
-3 directories, 10 files
+4 directories, 14 files
 ```
 
 ## Prerequisites
@@ -58,20 +64,19 @@ docker compose down
 
 ## License
 
-This repository uses a dual license. See LICENSE.md for full terms.
+This repository uses a dual license. See [LICENSE.md](LICENSE.md) for full terms.
 
-### MIT License &mdash; Code
-
-- `app/static/color-scheme.js`
-- `app/static/style.css`
-- `docker-compose.yaml`
-- `nginx.conf`
-
-### All rights reserved &mdash; Content
+### Content & Assets &mdash; All Rights Reserved
 
 - `app/favicon.ico`
 - `app/index.html`
 - `app/static/triangles_dark.svg`
 - `app/static/triangles_light.svg`
 
-Copyright &copy; 2026 Matt McCarthy.
+Copyright &copy; 2026 Matt McCarthy. All rights reserved.
+
+### Code &mdash; MIT License
+
+_All other files_
+
+Copyright &copy; 2026 Matt McCarthy. MIT license.

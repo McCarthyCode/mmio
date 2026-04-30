@@ -10,5 +10,14 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl/mattmccarthy.io.crt:/etc/ssl/certs/mattmccarthy.io.crt:ro
+      - ./nginx/ssl/mattmccarthy.io.key:/etc/ssl/private/mattmccarthy.io.key:ro
+      - ./nginx/ssl/mattmccarthy.net.crt:/etc/ssl/certs/mattmccarthy.net.crt:ro
+      - ./nginx/ssl/mattmccarthy.net.key:/etc/ssl/private/mattmccarthy.net.key:ro
+      - ./nginx/ssl/mattmccarthy.org.crt:/etc/ssl/certs/mattmccarthy.org.crt:ro
+      - ./nginx/ssl/mattmccarthy.org.key:/etc/ssl/private/mattmccarthy.org.key:ro
+      - ./nginx/ssl/mccarthycode.com.crt:/etc/ssl/certs/mccarthycode.com.crt:ro
+      - ./nginx/ssl/mccarthycode.com.key:/etc/ssl/private/mccarthycode.com.key:ro

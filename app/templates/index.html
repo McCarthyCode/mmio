@@ -7,13 +7,13 @@
   <meta name="description"
         content="Portfolio of Matt McCarthy, a full-stack developer based in Chicago, IL with 7+ years of experience in healthcare and commercial web applications.">
   <title>Matt McCarthy | Full-stack Developer</title>
-  <link rel="icon" type="image/png" href="favicon.ico">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
 
   <!-- Script: custom -->
-  <script src="static/color-scheme.js"></script>
+  <script src="{{ url_for('static', filename='color-scheme.js') }}"></script>
 
   <!-- Stylesheet: custom -->
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
   <!-- Stylesheet: Bootstrap -->
   <link rel="stylesheet"

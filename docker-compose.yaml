@@ -1,10 +1,8 @@
 services:
   www:
-    image: python:latest
+    container_name: www
+    build: .
     restart: unless-stopped
-    command: /bin/sh -c "cd /app && python3 -m http.server 8080"
-    volumes:
-      - ./app:/app
   nginx:
     image: nginx:latest
     restart: unless-stopped
@@ -12,7 +10,11 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/conf.d/mattmccarthy.io.conf:/etc/nginx/conf.d/mattmccarthy.io.conf:ro
+      - ./nginx/conf.d/mattmccarthy.net.conf:/etc/nginx/conf.d/mattmccarthy.net.conf:ro
+      - ./nginx/conf.d/mattmccarthy.org.conf:/etc/nginx/conf.d/mattmccarthy.org.conf:ro
+      - ./nginx/conf.d/mccarthycode.com.conf:/etc/nginx/conf.d/mccarthycode.com.conf:ro
+      - ./nginx/conf.d/redirect-http-to-https.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/ssl/mattmccarthy.io.crt:/etc/ssl/certs/mattmccarthy.io.crt:ro
       - ./nginx/ssl/mattmccarthy.io.key:/etc/ssl/private/mattmccarthy.io.key:ro
       - ./nginx/ssl/mattmccarthy.net.crt:/etc/ssl/certs/mattmccarthy.net.crt:ro

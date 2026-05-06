@@ -1,0 +1,16 @@
+services:
+  www:
+    container_name: www
+    build: .
+    restart: unless-stopped
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d/mattmccarthy.local.conf:/etc/nginx/conf.d/mattmccarthy.local.conf:ro
+      - ./nginx/conf.d/redirect-http-to-https.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/ssl/mattmccarthy.local.crt:/etc/ssl/certs/mattmccarthy.local.crt:ro
+      - ./nginx/ssl/mattmccarthy.local.key:/etc/ssl/private/mattmccarthy.local.key:ro

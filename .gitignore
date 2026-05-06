@@ -1,2 +1,15 @@
 .DS_Store
 /nginx/ssl
+
+# Environment files (use .env.example as template)
+.env
+.env.local
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Docker
+*.tar
+*.tar.gz

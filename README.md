@@ -14,26 +14,32 @@ Built with plain HTML, CSS, and Bootstrap. Served via Nginx in a Docker containe
 
 ```
 .
+├── .gitignore
+├── Dockerfile
 ├── LICENSE.md
 ├── README.md
 ├── app
-│   ├── favicon.ico
-│   ├── index.html                      # Single-page portfolio
-│   └── static
-│       ├── color-scheme.js             # Light/dark theme logic
-│       ├── style.css                   # Custom styles
-│       ├── triangles_dark.svg          # Background asset (dark mode)
-│       └── triangles_light.svg         # Background asset (light mode)
-├── docker-compose.yaml                 # Service definitions
+│   ├── app.py
+│   ├── static
+│   │   ├── color-scheme.js
+│   │   ├── favicon.ico
+│   │   ├── style.css
+│   │   ├── triangles_dark.svg
+│   │   └── triangles_light.svg
+│   └── templates
+│       └── index.html
+├── docker-compose.dev.yaml
+├── docker-compose.yaml
 └── nginx
-    └── conf.d                          # Nginx server configurations
+    └── conf.d
         ├── mattmccarthy.io.conf
+        ├── mattmccarthy.local.conf
         ├── mattmccarthy.net.conf
         ├── mattmccarthy.org.conf
         ├── mccarthycode.com.conf
         └── redirect-http-to-https.conf
 
-4 directories, 14 files
+5 directories, 19 files
 ```
 
 ## Prerequisites

@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: 'mmio - Matt McCarthy Portfolio Website Infrastructure'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: staging
+    AllowedValues:
+      - development
+      - staging
+      - production
+    Description: Environment name
+  
+  ContainerImage:
+    Type: String
+    Description: Container image URI from GitHub Container Registry
+
+Mappings:
+  EnvironmentConfig:
+    staging:
+      MemorySize: 512
+      Timeout: 60
+      ReservedConcurrentExecutions: 10
+      LogLevel: INFO
+    production:
+      MemorySize: 1024
+      Timeout: 60
+      ReservedConcurrentExecutions: 100
+      LogLevel: WARN
+    development:
+      MemorySize: 256
+      Timeout: 30
+      ReservedConcurrentExecutions: 5
+      LogLevel: DEBUG
+
+Resources:
+  # Lambda Execution Role
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Application
+          Value: mmio
+
+  # Lambda Function
+  MmioFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'mmio-${Environment}'
+      PackageType: Image
+      ImageUri: !Ref ContainerImage
+      Role: !GetAtt LambdaExecutionRole.Arn
+      MemorySize: !FindInMap [EnvironmentConfig, !Ref Environment, MemorySize]
+      Timeout: !FindInMap [EnvironmentConfig, !Ref Environment, Timeout]
+      ReservedConcurrentExecutions: !FindInMap [EnvironmentConfig, !Ref Environment, ReservedConcurrentExecutions]
+      Environment:
+        Variables:
+          ENVIRONMENT: !Ref Environment
+          LOG_LEVEL: !FindInMap [EnvironmentConfig, !Ref Environment, LogLevel]
+      Events:
+        HttpApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref MmioHttpApi
+            Path: /{proxy+}
+            Method: ANY
+        RootPath:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref MmioHttpApi
+            Path: /
+            Method: ANY
+      Tracing: Active
+      Tags:
+        Environment: !Ref Environment
+        Application: mmio
+
+  # HTTP API Gateway
+  MmioHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      Name: !Sub 'mmio-${Environment}'
+      StageName: !Ref Environment
+      TracingEnabled: true
+      Tags:
+        Environment: !Ref Environment
+        Application: mmio
+
+  # CloudWatch Log Group
+  LambdaLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/mmio-${Environment}'
+      RetentionInDays: !If [IsProduction, 30, 7]
+
+  # Alarm for Lambda Error Rate
+  LambdaErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub 'mmio-${Environment}-lambda-errors'
+      AlarmDescription: Alert on elevated error rate
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref MmioFunction
+
+Conditions:
+  IsProduction: !Equals [!Ref Environment, production]
+
+Outputs:
+  FunctionArn:
+    Description: Lambda Function ARN
+    Value: !GetAtt MmioFunction.Arn
+    Export:
+      Name: !Sub 'mmio-${Environment}-function-arn'
+
+  FunctionUrl:
+    Description: Lambda Function URL
+    Value: !Sub 'https://${MmioHttpApi}.lambda-url.${AWS::Region}.on.aws'
+    Export:
+      Name: !Sub 'mmio-${Environment}-function-url'
+
+  ApiEndpoint:
+    Description: HTTP API Endpoint
+    Value: !Sub 'https://${MmioHttpApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}'
+    Export:
+      Name: !Sub 'mmio-${Environment}-api-endpoint'

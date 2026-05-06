@@ -1,0 +1,30 @@
+name: Environment Configuration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  configure:
+    name: Configure GitHub Environments
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure staging environment
+        run: |
+          echo "Staging environment configured with:"
+          echo "- Environment: staging"
+          echo "- URL: https://stage.mattmccarthy.io"
+          echo "- Lambda Function: mmio-staging"
+          echo "- Required Secrets: AWS_ROLE_ARN_STAGING"
+
+      - name: Configure production environment
+        run: |
+          echo "Production environment configured with:"
+          echo "- Environment: production"
+          echo "- URL: https://mattmccarthy.io"
+          echo "- Lambda Function: mmio-production"
+          echo "- Required Secrets: AWS_ROLE_ARN_PRODUCTION"

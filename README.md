@@ -2,87 +2,106 @@
 
 Personal portfolio website for Matt McCarthy, a full-stack web developer based in Chicago, IL.
 
-Built with plain HTML, CSS, and Bootstrap. Served via Nginx in a Docker container.
+Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Docker container.
 
 ## Stack
 
 - **Frontend:** HTML5, CSS3, Bootstrap 5.3, Bootstrap Icons, Google Fonts
-- **Server:** Nginx
-- **Container:** Docker / Docker Compose
+- **Backend:** Python Flask with Gunicorn
+- **Server:** Nginx reverse proxy
+- **Container:** Docker
+- **CI/CD:** GitHub Actions
+- **Infrastructure:** AWS Lambda, HTTP API Gateway, CloudWatch (TODO)
+- **IaC:** AWS SAM CloudFormation (TODO)
 
 ## Project Structure
 
 ```
+❯ tree . -a --gitignore -I .git
 .
+├── .github
+│   └── workflows
+│       └── opencode.yaml              # Agent configuration
 ├── .gitignore
-├── Dockerfile
-├── LICENSE.md
-├── README.md
 ├── app
-│   ├── app.py
-│   ├── static
-│   │   ├── color-scheme.js
-│   │   ├── favicon.ico
-│   │   ├── style.css
-│   │   ├── triangles_dark.svg
-│   │   └── triangles_light.svg
-│   └── templates
-│       └── index.html
-├── docker-compose.dev.yaml
-├── docker-compose.yaml
-└── nginx
-    └── conf.d
-        ├── mattmccarthy.io.conf
-        ├── mattmccarthy.local.conf
-        ├── mattmccarthy.net.conf
-        ├── mattmccarthy.org.conf
-        ├── mccarthycode.com.conf
-        └── redirect-http-to-https.conf
+│   ├── app.py                         # Flask app with CSP nonce generation
+│   ├── static                         # Scripts, stylesheets, and assets
+│   │   ├── color-scheme.js
+│   │   ├── favicon.ico                # Proprietary asset (see LICENSE.md)
+│   │   ├── style.css
+│   │   ├── triangles_dark.svg         # Proprietary asset (see LICENSE.md)
+│   │   └── triangles_light.svg        # Proprietary asset (see LICENSE.md)
+│   └── templates                      # Jinja2 templates
+│       └── index.html                 # Proprietary content (see LICENSE.md)
+├── docker-compose.dev.yaml            # Docker compose configuration (dev)
+├── docker-compose.yaml                # Docker compose configuration (prod)
+├── Dockerfile                         # Build instructions for Flask app
+├── LICENSE.md
+├── nginx
+│   └── conf.d                         # Configurations for domains & redirects
+│       ├── mattmccarthy.io.conf
+│       ├── mattmccarthy.local.conf
+│       ├── mattmccarthy.net.conf
+│       ├── mattmccarthy.org.conf
+│       ├── mccarthycode.com.conf
+│       └── redirect-http-to-https.conf
+└── README.md
 
-5 directories, 19 files
+8 directories, 20 files
 ```
 
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/)
+- [Python 3.11+](https://www.python.org/) (for testing and development)
 
-## Running Locally
+## Development
+
+### Running Locally
+
+Ensure you add the following line to `/etc/hosts` (or `C:\Windows\System32\drivers\etc\hosts` on Windows):
+
+```
+127.0.0.1 mattmccarthy.local www.mattmccarthy.local
+```
+
+Clone the repository and run Docker Compose.
 
 ```bash
 git clone https://github.com/mccarthycode/mmio.git
 cd mmio
-docker compose up
+docker compose -f docker-compose.dev.yaml up
 ```
 
-The site will be available at [http://localhost](http://localhost).
+The site will be available at [https://mattmccarthy.local](https://mattmccarthy.local).
 
 To run in the background:
 
 ```bash
-docker compose up -d
+docker compose -f docker-compose.dev.yaml up -d
 ```
 
 To stop:
 
 ```bash
-docker compose down
+docker compose -f docker-compose.dev.yaml down
 ```
 
 ## License
 
 This repository uses a dual license. See [LICENSE.md](LICENSE.md) for full terms.
 
-### Content & Assets &mdash; All Rights Reserved
+### Content & Assets — All Rights Reserved
 
-- `app/favicon.ico`
-- `app/index.html`
+- `app/static/favicon.ico`
 - `app/static/triangles_dark.svg`
 - `app/static/triangles_light.svg`
+- `app/templates/index.html`
 
-Copyright &copy; 2026 Matt McCarthy. All rights reserved.
+Copyright © 2026 Matt McCarthy. All rights reserved.
 
-### Code &mdash; MIT License
+### Code — MIT License
 
-_All other files_
+All other files
 
-Copyright &copy; 2026 Matt McCarthy. MIT license.
+Copyright © 2026 Matt McCarthy. MIT license.

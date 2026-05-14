@@ -3,6 +3,9 @@ services:
     container_name: www
     build: .
     restart: unless-stopped
+    volumes:
+      - ./app:/app
+    command: ["flask", "--app", "/app/app.py", "--debug", "run", "--host=0.0.0.0", "--port=8080"]
   nginx:
     image: nginx:latest
     restart: unless-stopped

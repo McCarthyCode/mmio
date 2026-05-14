@@ -32,6 +32,7 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │   │   ├── color-scheme.js
 │   │   ├── favicon.ico                # Proprietary asset (see LICENSE.md)
 │   │   ├── style.css
+│   │   ├── tooltip.js
 │   │   ├── triangles_dark.svg         # Proprietary asset (see LICENSE.md)
 │   │   └── triangles_light.svg        # Proprietary asset (see LICENSE.md)
 │   └── templates                      # Jinja2 templates

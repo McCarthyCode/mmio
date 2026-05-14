@@ -1,15 +1,19 @@
-.DS_Store
-/nginx/ssl
-
-# Environment files (use .env.example as template)
-.env
-.env.local
-
 # Build artifacts
+__pycache__/
+*.egg-info/
+*.pyc
 build/
 dist/
-*.egg-info/
+
+# OS-specific files
+.DS_Store
 
 # Docker
 *.tar
 *.tar.gz
+
+# Environment files
+/docker/.env/production/
+
+# SSL/TLS secrets
+/nginx/ssl

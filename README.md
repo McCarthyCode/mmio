@@ -22,15 +22,12 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 .
 ├── .github
 │   └── workflows
-│       ├── opencode.yaml              # Agent configuration
-│       └── build-release-image.yml    # Automated image builds
+│       ├── build-release-image.yml    # Automated image builds
+│       └── opencode.yml              # Agent configuration
 ├── .gitignore
-├── .env.example                       # Environment template
-├── .env.development                   # Development settings
-├── .env.staging                       # Staging settings
-├── .env.production                    # Production settings
 ├── app
 │   ├── app.py                         # Flask app with CSP nonce generation
+│   ├── requirements.txt               # Python dependencies
 │   ├── static                         # Scripts, stylesheets, and assets
 │   │   ├── color-scheme.js
 │   │   ├── favicon.ico                # Proprietary asset (see LICENSE.md)
@@ -39,12 +36,16 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │   │   └── triangles_light.svg        # Proprietary asset (see LICENSE.md)
 │   └── templates                      # Jinja2 templates
 │       └── index.html                 # Proprietary content (see LICENSE.md)
-├── docker-compose.dev.yaml            # Docker compose configuration (dev)
-├── docker-compose.yaml                # Docker compose configuration (prod)
+├── docker
+│   ├── .env
+│   │   ├── development
+│   │   │   └── www.env                # Development app settings
+│   │   └── staging
+│   │       └── www.env                # Staging app settings
+│   ├── build-image.sh                 # Local build script
+│   ├── compose.dev.yml                # Development compose configuration
+│   └── compose.yml                    # Production compose configuration
 ├── Dockerfile                         # Multi-stage build for Flask app
-├── requirements.txt                   # Python dependencies
-├── scripts
-│   └── build-image.sh                 # Local build script
 ├── LICENSE.md
 ├── nginx
 │   └── conf.d                         # Configurations for domains & redirects
@@ -56,7 +57,7 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │       └── redirect-http-to-https.conf
 └── README.md
 
-9 directories, 26 files
+12 directories, 25 files
 ```
 
 ## Prerequisites
@@ -79,7 +80,7 @@ Clone the repository and run Docker Compose.
 ```bash
 git clone https://github.com/mccarthycode/mmio.git
 cd mmio
-docker compose -f docker-compose.dev.yaml up
+docker compose -f docker/compose.dev.yml up
 ```
 
 The site will be available at [https://mattmccarthy.local](https://mattmccarthy.local).
@@ -87,13 +88,13 @@ The site will be available at [https://mattmccarthy.local](https://mattmccarthy.
 To run in the background:
 
 ```bash
-docker compose -f docker-compose.dev.yaml up -d
+docker compose -f docker/compose.dev.yml up -d
 ```
 
 To stop:
 
 ```bash
-docker compose -f docker-compose.dev.yaml down
+docker compose -f docker/compose.dev.yml down
 ```
 
 ## Building Release Images
@@ -120,36 +121,35 @@ The workflow triggers on:
 For local development and testing, use the build script:
 
 ```bash
-./scripts/build-image.sh [ENVIRONMENT] [TAG]
+./docker/build-image.sh [ENVIRONMENT] [TAG]
 ```
 
 Examples:
 
 ```bash
 # Build for development
-./scripts/build-image.sh development latest
+./docker/build-image.sh development dev
 
 # Build for staging
-./scripts/build-image.sh staging v1.0.0
+./docker/build-image.sh staging v1.0.0
 
 # Build for production
-./scripts/build-image.sh production v1.0.0
+./docker/build-image.sh production v1.0.0
 ```
 
 ### Environment Configuration
 
-Environment-specific settings are managed through `.env.*` files:
+Environment-specific settings are managed through `./docker/.env/*`/www.env files:
 
-- `.env.development` - Development settings (debug enabled, 1 worker)
-- `.env.staging` - Staging settings (testing-optimized, 2 workers)
-- `.env.production` - Production settings (optimized, 4 workers)
-- `.env.example` - Template for custom environments
+- `./docker/.env/development/www.env` - Development settings (debug enabled, 1 worker)
+- `./docker/.env/staging/www.env` - Staging settings (testing-optimized, 2 workers)
+- `./docker/.env/production/www.env` - Production settings (optimized, 4 workers)
 
 Load environment settings before building:
 
 ```bash
-source .env.development
-./scripts/build-image.sh development
+source ./docker/.env/development/www.env
+./docker/build-image.sh development
 ```
 
 ### Multi-Stage Build Optimization
@@ -174,15 +174,15 @@ All published images are scanned for vulnerabilities using Trivy. Results are up
 Published images are available at:
 
 ```
-ghcr.io/mccarthycode/mmio:latest
-ghcr.io/mccarthycode/mmio:main
-ghcr.io/mccarthycode/mmio:v1.0.0
+ghcr.io/mccarthy-code/mmio-www:latest
+ghcr.io/mccarthy-code/mmio-www:main
+ghcr.io/mccarthy-code/mmio-www:v1.0.0
 ```
 
 To pull locally:
 
 ```bash
-docker pull ghcr.io/mccarthycode/mmio:latest
+docker pull ghcr.io/mccarthy-code/mmio-www:latest
 ```
 
 ### CI/CD Integration

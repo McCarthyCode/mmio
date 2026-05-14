@@ -1,12 +1,12 @@
 #!/bin/bash
 # Build release images locally or in CI/CD pipeline
-# Usage: ./scripts/build-image.sh [ENVIRONMENT] [TAG]
+# Usage: ./docker/build-image.sh [ENVIRONMENT] [TAG]
 
 set -e
 
 ENVIRONMENT="${1:-development}"
 TAG="${2:-latest}"
-IMAGE_NAME="mmio:${TAG}"
+IMAGE_NAME="ghcr.io/mccarthy-code/mmio-www:${TAG}"
 BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 VCS_REF=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
 VERSION="${TAG}"
@@ -24,7 +24,7 @@ case "$ENVIRONMENT" in
 esac
 
 # Load environment-specific settings
-ENV_FILE=".env.${ENVIRONMENT}"
+ENV_FILE="./docker/.env/${ENVIRONMENT}/www.env"
 if [ -f "$ENV_FILE" ]; then
   echo "Loading environment from $ENV_FILE"
   export $(cat "$ENV_FILE" | grep -v '^#' | xargs)
@@ -44,6 +44,7 @@ docker build \
   --build-arg "VERSION=$VERSION" \
   --tag "$IMAGE_NAME" \
   --label "environment=$ENVIRONMENT" \
+  --platform "linux/amd64,linux/arm64" \
   .
 
 echo "✓ Image built successfully: $IMAGE_NAME"

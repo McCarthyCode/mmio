@@ -1,8 +1,8 @@
 # Build stage
-FROM python:slim as builder
+FROM python:slim AS builder
 
 WORKDIR /build
-COPY requirements.txt .
+COPY ./app/requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 # Runtime stage
@@ -15,8 +15,9 @@ ARG VERSION=latest
 LABEL org.opencontainers.image.created=$BUILD_DATE
 LABEL org.opencontainers.image.revision=$VCS_REF
 LABEL org.opencontainers.image.version=$VERSION
-LABEL maintainer="McCarthyCode"
-LABEL description="mmio - Personal portfolio and projects"
+LABEL authors="Matt McCarthy"
+LABEL maintainer="matt@mattmccarthy.io"
+LABEL description="mmio - Professional profile webpage for Matt McCarthy"
 
 COPY --from=builder /root/.local /root/.local
 COPY ./app /app

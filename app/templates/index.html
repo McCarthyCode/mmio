@@ -9,34 +9,41 @@
   <title>Matt McCarthy | Full-stack Developer</title>
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
 
-  <!-- Script: custom -->
-  <script src="{{ url_for('static', filename='color-scheme.js') }}"></script>
-
   <!-- Stylesheet: custom -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-  <!-- Stylesheet: Bootstrap -->
+  <!-- Stylesheets: Bootstrap, Bootstrap Icons -->
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         integrity="sha256-2FMn2Zx6PuH5tdBQDRNwrOo60ts5wWPC9R8jK67b3t4="
         crossorigin="anonymous">
-
-  <!-- Stylesheet: Bootstrap Icons -->
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         integrity="sha256-pdY4ejLKO67E0CM2tbPtq1DJ3VGDVVdqAR6j3ZwdiE4="
         crossorigin="anonymous">
 
-  <!-- Fonts: preconnect then load -->
+  <!-- Fonts: Google Fonts, "Baloo 2" (preconnect then load) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
 
-  <!-- Script: Bootstrap -->
+  <!-- Scripts: Bootstrap, Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+          integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I="
+          crossorigin="anonymous"
+          defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
           integrity="sha256-ew8UiV1pJH/YjpOEBInP1HxVvT/SfrCmwSoUzF9JIgc="
           crossorigin="anonymous"
+          defer></script>
+
+  <!-- Scripts: custom -->
+  <script src="{{ url_for('static', filename='color-scheme.js') }}"
+          nonce="{{ nonce }}"
+          defer></script>
+  <script src="{{ url_for('static', filename='tooltip.js') }}"
+          nonce="{{ nonce }}"
           defer></script>
 </head>
 
@@ -71,27 +78,33 @@
           </div>
           <ul class="d-lg-flex d-none flex-row justify-content-around nav nav-pills px-3 py-2" aria-hidden="true">
             <li class="card nav-item rounded-4">
-              <a href="https://github.com/mccarthycode"
-                 class="nav-link rounded-4"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <i class="bi bi-github fs-4"></i>
-              </a>
-            </li>
-            <li class="card nav-item rounded-4">
               <a href="https://www.linkedin.com/in/mccarthycode"
                  class="nav-link rounded-4"
                  target="_blank"
-                 rel="noopener noreferrer">
+                 rel="noopener noreferrer"
+                 data-bs-toggle="tooltip"
+                 data-bs-title="LinkedIn: in/mccarthycode">
                 <i class="bi bi-linkedin fs-4"></i>
               </a>
             </li>
             <li class="card nav-item rounded-4">
-              <a href="https://stackoverflow.com/users/2858094/matt-mccarthy?tab=profile"
+              <a href="https://github.com/mccarthycode"
                  class="nav-link rounded-4"
                  target="_blank"
-                 rel="noopener noreferrer">
-                <i class="bi bi-stack-overflow fs-4"></i>
+                 rel="noopener noreferrer"
+                 data-bs-toggle="tooltip"
+                 data-bs-title="GitHub: mccarthycode">
+                <i class="bi bi-github fs-4"></i>
+              </a>
+            </li>
+            <li class="card nav-item rounded-4">
+              <a href="mailto:matt@mattmccarthy.io"
+                 class="nav-link rounded-4"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 data-bs-toggle="tooltip"
+                 data-bs-title="Email: matt@mattmccarthy.io">
+                <i class="bi bi-envelope-at fs-4"></i>
               </a>
             </li>
           </ul>
@@ -117,31 +130,34 @@
                 </p>
                 <ul class="flex-row gap-3 justify-content-center nav nav-pills px-3 py-2 social"
                     aria-label="External profile links">
-                  <li class="card nav-item rounded-4" aria-label="GitHub">
-                    <a href="https://github.com/mccarthycode"
-                       class="nav-link rounded-4"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                      <span class="visually-hidden">GitHub</span>
-                      <i class="bi bi-github fs-4" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li class="card nav-item rounded-4" aria-label="LinkedIn">
+                  <li class="card nav-item rounded-4">
                     <a href="https://www.linkedin.com/in/mccarthycode"
                        class="nav-link rounded-4"
                        target="_blank"
-                       rel="noopener noreferrer">
-                      <span class="visually-hidden">LinkedIn</span>
-                      <i class="bi bi-linkedin fs-4" aria-hidden="true"></i>
+                       rel="noopener noreferrer"
+                       data-bs-toggle="tooltip"
+                       data-bs-title="LinkedIn: in/mccarthycode">
+                      <i class="bi bi-linkedin fs-4"></i>
                     </a>
                   </li>
-                  <li class="card nav-item rounded-4" aria-label="Stack Overflow">
-                    <a href="https://stackoverflow.com/users/2858094/matt-mccarthy?tab=profile"
+                  <li class="card nav-item rounded-4">
+                    <a href="https://github.com/mccarthycode"
                        class="nav-link rounded-4"
                        target="_blank"
-                       rel="noopener noreferrer">
-                      <span class="visually-hidden">Stack Overflow</span>
-                      <i class="bi bi-stack-overflow fs-4" aria-hidden="true"></i>
+                       rel="noopener noreferrer"
+                       data-bs-toggle="tooltip"
+                       data-bs-title="GitHub: mccarthycode">
+                      <i class="bi bi-github fs-4"></i>
+                    </a>
+                  </li>
+                  <li class="card nav-item rounded-4">
+                    <a href="mailto:matt@mattmccarthy.io"
+                       class="nav-link rounded-4"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       data-bs-toggle="tooltip"
+                       data-bs-title="Email: matt@mattmccarthy.io">
+                      <i class="bi bi-envelope-at fs-4"></i>
                     </a>
                   </li>
                 </ul>

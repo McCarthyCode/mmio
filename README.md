@@ -23,7 +23,7 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 ├── .github
 │   └── workflows
 │       ├── build-release-image.yml    # Automated image builds
-│       └── opencode.yml              # Agent configuration
+│       └── opencode.yml               # Agent configuration
 ├── .gitignore
 ├── app
 │   ├── app.py                         # Flask app with CSP nonce generation
@@ -96,103 +96,6 @@ To stop:
 ```bash
 docker compose -f docker/compose.dev.yml down
 ```
-
-## Building Release Images
-
-This project uses automated image building via GitHub Actions, decoupled from production infrastructure. Release images are built and published to the GitHub Container Registry on every push and pull request.
-
-### Automated Builds (GitHub Actions)
-
-The `build-release-image.yml` workflow automatically:
-
-1. **Builds** optimized multi-stage Docker images
-2. **Tags** images by branch, semantic version, and commit SHA
-3. **Publishes** images to `ghcr.io` (GitHub Container Registry)
-4. **Scans** images for security vulnerabilities (Trivy)
-5. **Caches** layers for faster rebuilds
-
-The workflow triggers on:
-- Push to `main` or `develop` branches
-- Pull requests to `main` or `develop`
-- Tagged releases (v*)
-
-### Building Images Locally
-
-For local development and testing, use the build script:
-
-```bash
-./docker/build-image.sh [ENVIRONMENT] [TAG]
-```
-
-Examples:
-
-```bash
-# Build for development
-./docker/build-image.sh development dev
-
-# Build for staging
-./docker/build-image.sh staging v1.0.0
-
-# Build for production
-./docker/build-image.sh production v1.0.0
-```
-
-### Environment Configuration
-
-Environment-specific settings are managed through `./docker/.env/*`/www.env files:
-
-- `./docker/.env/development/www.env` - Development settings (debug enabled, 1 worker)
-- `./docker/.env/staging/www.env` - Staging settings (testing-optimized, 2 workers)
-- `./docker/.env/production/www.env` - Production settings (optimized, 4 workers)
-
-Load environment settings before building:
-
-```bash
-source ./docker/.env/development/www.env
-./docker/build-image.sh development
-```
-
-### Multi-Stage Build Optimization
-
-The Dockerfile uses a two-stage build process for efficiency:
-
-1. **Builder Stage:** Compiles Python dependencies without build tools
-2. **Runtime Stage:** Contains only runtime dependencies, reducing image size
-
-Benefits:
-- Smaller final image size
-- Faster deployments
-- Reduced attack surface
-- Optimized caching
-
-### Image Scanning
-
-All published images are scanned for vulnerabilities using Trivy. Results are uploaded to GitHub Security tab for monitoring.
-
-### Registry Access
-
-Published images are available at:
-
-```
-ghcr.io/mccarthy-code/mmio-www:latest
-ghcr.io/mccarthy-code/mmio-www:main
-ghcr.io/mccarthy-code/mmio-www:v1.0.0
-```
-
-To pull locally:
-
-```bash
-docker pull ghcr.io/mccarthy-code/mmio-www:latest
-```
-
-### CI/CD Integration
-
-Release images are built outside production infrastructure:
-- ✅ Automated builds on every commit
-- ✅ No manual deployment commands needed
-- ✅ Decoupled from live production environment
-- ✅ Version control for all builds
-- ✅ Security scanning included
 
 ## License
 

@@ -36,6 +36,8 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │   │   └── triangles_light.svg        # Proprietary asset (see LICENSE.md)
 │   └── templates                      # Jinja2 templates
 │       └── index.html                 # Proprietary content (see LICENSE.md)
+├── docs
+│   └── actions.md
 ├── docker
 │   ├── .env
 │   │   ├── development
@@ -57,7 +59,7 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │       └── redirect-http-to-https.conf
 └── README.md
 
-12 directories, 25 files
+13 directories, 27 files
 ```
 
 ## Prerequisites

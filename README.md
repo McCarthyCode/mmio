@@ -97,6 +97,10 @@ To stop:
 docker compose -f docker/compose.dev.yml down
 ```
 
+## GitHub Actions
+
+See [docs/actions.md](docs/actions.md).
+
 ## License
 
 This repository uses a dual license. See [LICENSE.md](LICENSE.md) for full terms.

@@ -31,6 +31,7 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │   ├── static                         # Scripts, stylesheets, and assets
 │   │   ├── color-scheme.js
 │   │   ├── favicon.ico                # Proprietary asset (see LICENSE.md)
+│   │   ├── headshot.jpg               # Proprietary asset (see LICENSE.md)
 │   │   ├── style.css
 │   │   ├── tooltip.js
 │   │   ├── triangles_dark.svg         # Proprietary asset (see LICENSE.md)
@@ -111,6 +112,7 @@ This repository uses a dual license. See [LICENSE.md](LICENSE.md) for full terms
 ### Content & Assets — All Rights Reserved
 
 - `app/static/favicon.ico`
+- `app/static/headshot.jpg`
 - `app/static/triangles_dark.svg`
 - `app/static/triangles_light.svg`
 - `app/templates/index.html`

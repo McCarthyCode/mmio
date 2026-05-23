@@ -52,9 +52,11 @@ main>div {
   background-image: url("triangles_light.svg");
 }
 
-/* Responsive aside element */
+/* Responsive title div */
 
-aside {
+nav {
+  display: flex;
+  position: fixed;
   pointer-events: none;
 }
 
@@ -62,34 +64,36 @@ aside {
   pointer-events: visible;
 }
 
+#headshot {
+  max-width: 240px;
+  max-height: 240px;
+}
+
 @media (min-width: 992px) {
-  #nav-sections>div {
+  #title {
+    position: fixed;
+    max-width: 258px;
     height: 100vh;
-    padding-top: 4.5rem;
-    padding-bottom: 3rem;
+    overflow-y: auto;
+  }
+
+  nav {
+    display: block;
+    position: unset;
+    max-width: 240px;
   }
 }
 
-@media (max-width: 991.99px) {
-  .visually-hidden-max-lg {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
+@media (min-width: 1200px) {
+  #title {
+    max-width: 303px;
   }
 }
 
-/* Visual section separators */
-
-#about,
-#skills,
-#experience {
-  padding-top: 4.5rem;
+@media (min-width: 1400px) {
+  #title {
+    max-width: 348px;
+  }
 }
 
 /* Card and active nav pill elements */
@@ -107,7 +111,7 @@ aside {
     inset 2px 2px 1px 0 rgba(255, 255, 255, 0.3),
     inset -2px -2px 2px 1px rgba(255, 255, 255, 0.1),
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    0 6px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Nav pill link re-styling */

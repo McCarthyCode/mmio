@@ -6,10 +6,11 @@ This repository contains two distinct categories of work, each under a different
 
 The following files contain original creative and personal content and are **not** covered by the MIT License:
 
-- `app/favicon.ico`
-- `app/index.html`
+- `app/static/favicon.ico`
+- `app/static/headshot.jpg`
 - `app/static/triangles_dark.svg`
 - `app/static/triangles_light.svg`
+- `app/templates/index.html`
 
 ---
 

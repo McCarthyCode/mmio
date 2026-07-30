@@ -12,11 +12,12 @@
   unset so it falls back to the human's own global identity by default — that's the
   correct default for anything he commits manually. Setting it repo-locally pins *every*
   commit (including his own) to whichever identity is configured.
-- Agent-authored commits and PRs are meant to carry the `mmio-claude-agent[bot]`
-  GitHub App identity instead. This is enforced by `.claude/hooks/BotIdentity.hook.sh`
-  (a `PreToolUse`/`Bash` hook registered in `.claude/settings.json`), which rewrites
-  `git commit`, `gh pr create`, `gh pr comment`, and `gh issue comment` commands the
-  assistant issues — it cannot see or rewrite commands the human runs himself
+- Agent-authored commits, PRs, issues, and any comments or reviews posted on them are
+  meant to carry the `mmio-claude-agent[bot]` GitHub App identity instead. This is
+  enforced by `.claude/hooks/BotIdentity.hook.sh` (a `PreToolUse`/`Bash` hook registered
+  in `.claude/settings.json`), which rewrites `git commit` and any `gh pr`/`gh issue`
+  subcommand (`create`, `comment`, `close -c`, `reopen -c`, `review`, `edit`, `merge`,
+  etc.) the assistant issues — it cannot see or rewrite commands the human runs himself
   (`!`-prefixed shell passthrough bypasses the tool-call pipeline entirely, so it never
   reaches this hook).
 - Full mechanism, setup, and the token-minting/PR-wrapper scripts it depends on:

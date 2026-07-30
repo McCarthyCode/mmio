@@ -1,0 +1,17 @@
+# Matt McCarthy
+
+> Portfolio and resume of Matt McCarthy, a full-stack software engineer based in Chicago, IL with 7+ years of experience building enterprise web applications in regulated healthcare and commercial environments.
+
+Full-stack Software Engineer proficient in Angular, TypeScript, and Python/Django, with hands-on experience in cloud-native infrastructure (Docker, GCP, Kubernetes). Designed and delivered HIPAA and FDA 21 CFR Part 11-compliant systems supporting 10,000+ daily users across mission-critical healthcare platforms.
+
+## Profile
+
+- [About]({{ site_url }}/#about): Professional summary and background
+- [Skills]({{ site_url }}/#skills): Core competencies across frontend, backend, databases & cloud, DevOps, testing, and compliance
+- [Experience]({{ site_url }}/#experience): Professional experience, 2018-present
+
+## Contact
+
+- [LinkedIn](https://www.linkedin.com/in/mccarthycode)
+- [GitHub](https://github.com/mccarthycode)
+- [Email](mailto:matt@mattmccarthy.io)

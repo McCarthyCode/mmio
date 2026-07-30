@@ -22,3 +22,13 @@
   reaches this hook).
 - Full mechanism, setup, and the token-minting/PR-wrapper scripts it depends on:
   `docs/runbooks/` (see the runbook for the PR that introduced this hook).
+
+## Merge authority
+
+- **The assistant must never merge a pull request in this repo, under any
+  circumstances.** Opening PRs, pushing commits, and updating branches are fine; running
+  `gh pr merge` (or merging via the API, or pushing directly to `main`) is not, even if
+  asked to "ship it" or "merge when green." The human retains final approval and sole
+  merge responsibility for every PR — this is not something to interpret as "unless the
+  human clearly wants it merged." If a PR is ready, say so and stop; let him do the
+  actual merge.

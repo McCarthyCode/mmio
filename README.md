@@ -13,43 +13,6 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Deployed to DigitalOcean A
   on every push to `main`, terminates TLS, and routes all custom domains natively (no
   Nginx or image registry in the loop)
 
-## Project Structure
-
-```
-❯ tree . -a --gitignore -I '.git|.claude'
-.
-├── .gitignore
-├── AGENTS.md
-├── app
-│   ├── app.py                         # Flask app with CSP nonce generation
-│   ├── requirements.txt               # Python dependencies
-│   ├── static                         # Scripts, stylesheets, and assets
-│   │   ├── color-scheme.js
-│   │   ├── favicon.ico                # Proprietary asset (see LICENSE.md)
-│   │   ├── headshot.jpg               # Proprietary asset (see LICENSE.md)
-│   │   ├── style.css
-│   │   ├── tooltip.js
-│   │   ├── triangles_dark.svg         # Proprietary asset (see LICENSE.md)
-│   │   └── triangles_light.svg        # Proprietary asset (see LICENSE.md)
-│   └── templates                      # Jinja2 templates
-│       ├── index.html                 # Proprietary content (see LICENSE.md)
-│       ├── llms.txt
-│       ├── robots.txt
-│       └── sitemap.xml
-├── app.yaml                           # DigitalOcean App Platform spec
-├── CLAUDE.md
-├── docker-compose.yaml                # Local dev only
-├── Dockerfile                         # Multi-stage build for Flask app
-├── docs
-│   ├── deployment.md
-│   └── runbooks
-├── LICENSE.md
-├── README.md
-└── scripts                            # Bot-identity tooling (see AGENTS.md)
-
-7 directories, 23 files
-```
-
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/)

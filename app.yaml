@@ -1,0 +1,95 @@
+name: mmio
+region: nyc
+
+services:
+  - name: www
+    github:
+      repo: McCarthyCode/mmio
+      branch: main
+      deploy_on_push: true
+    dockerfile_path: Dockerfile
+    source_dir: /
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    health_check:
+      http_path: /
+    envs:
+      - key: ENVIRONMENT
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_WORKERS
+        value: "4"
+      - key: LOG_LEVEL
+        value: info
+
+domains:
+  - domain: mattmccarthy.io
+    type: PRIMARY
+  - domain: www.mattmccarthy.io
+    type: ALIAS
+  - domain: mattmccarthy.net
+    type: ALIAS
+  - domain: www.mattmccarthy.net
+    type: ALIAS
+  - domain: mattmccarthy.org
+    type: ALIAS
+  - domain: www.mattmccarthy.org
+    type: ALIAS
+  - domain: mccarthycode.com
+    type: ALIAS
+  - domain: www.mccarthycode.com
+    type: ALIAS
+
+# Replicates today's nginx behavior: mattmccarthy.io (+ www) serves the app directly;
+# mattmccarthy.net/.org and mccarthycode.com (+ www) 301-redirect to mattmccarthy.io.
+ingress:
+  rules:
+    - match:
+        authority:
+          exact: mattmccarthy.net
+      redirect:
+        authority: mattmccarthy.io
+        scheme: https
+        redirect_code: 301
+    - match:
+        authority:
+          exact: www.mattmccarthy.net
+      redirect:
+        authority: mattmccarthy.io
+        scheme: https
+        redirect_code: 301
+    - match:
+        authority:
+          exact: mattmccarthy.org
+      redirect:
+        authority: mattmccarthy.io
+        scheme: https
+        redirect_code: 301
+    - match:
+        authority:
+          exact: www.mattmccarthy.org
+      redirect:
+        authority: mattmccarthy.io
+        scheme: https
+        redirect_code: 301
+    - match:
+        authority:
+          exact: mccarthycode.com
+      redirect:
+        authority: mattmccarthy.io
+        scheme: https
+        redirect_code: 301
+    - match:
+        authority:
+          exact: www.mccarthycode.com
+      redirect:
+        authority: mattmccarthy.io
+        scheme: https
+        redirect_code: 301
+    - component:
+        name: www
+      match:
+        path:
+          prefix: /

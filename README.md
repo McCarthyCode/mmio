@@ -2,29 +2,24 @@
 
 Personal portfolio website for Matt McCarthy, a full-stack web developer based in Chicago, IL.
 
-Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Docker container.
+Built with Flask backend, HTML5, CSS3, and Bootstrap. Deployed to DigitalOcean App Platform.
 
 ## Stack
 
 - **Frontend:** HTML5, CSS3, Bootstrap 5.3, Bootstrap Icons, Google Fonts
 - **Backend:** Python Flask with Gunicorn
-- **Server:** Nginx reverse proxy
-- **Container:** Docker (multi-stage builds)
-- **Registry:** GitHub Container Registry (ghcr.io)
-- **CI/CD:** GitHub Actions (automated image builds)
-- **Infrastructure:** AWS Lambda, HTTP API Gateway, CloudWatch (TODO)
-- **IaC:** AWS SAM CloudFormation (TODO)
+- **Container:** Docker (multi-stage build)
+- **Infrastructure:** DigitalOcean App Platform — builds directly from the `Dockerfile`
+  on every push to `main`, terminates TLS, and routes all custom domains natively (no
+  Nginx or image registry in the loop)
 
 ## Project Structure
 
 ```
-❯ tree . -a --gitignore -I .git
+❯ tree . -a --gitignore -I '.git|.claude'
 .
-├── .github
-│   └── workflows
-│       ├── build-release-image.yml    # Automated image builds
-│       └── opencode.yml               # Agent configuration
 ├── .gitignore
+├── AGENTS.md
 ├── app
 │   ├── app.py                         # Flask app with CSP nonce generation
 │   ├── requirements.txt               # Python dependencies
@@ -33,35 +28,26 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 │   │   ├── favicon.ico                # Proprietary asset (see LICENSE.md)
 │   │   ├── headshot.jpg               # Proprietary asset (see LICENSE.md)
 │   │   ├── style.css
-│   │   ├── tooltip.js
+│   │   ├── tooltip.js
 │   │   ├── triangles_dark.svg         # Proprietary asset (see LICENSE.md)
 │   │   └── triangles_light.svg        # Proprietary asset (see LICENSE.md)
 │   └── templates                      # Jinja2 templates
-│       └── index.html                 # Proprietary content (see LICENSE.md)
-├── docs
-│   └── actions.md
-├── docker
-│   ├── .env
-│   │   ├── development
-│   │   │   └── www.env                # Development app settings
-│   │   └── staging
-│   │       └── www.env                # Staging app settings
-│   ├── build-image.sh                 # Local build script
-│   ├── compose.dev.yml                # Development compose configuration
-│   └── compose.yml                    # Production compose configuration
+│       ├── index.html                 # Proprietary content (see LICENSE.md)
+│       ├── llms.txt
+│       ├── robots.txt
+│       └── sitemap.xml
+├── app.yaml                           # DigitalOcean App Platform spec
+├── CLAUDE.md
+├── docker-compose.yaml                # Local dev only
 ├── Dockerfile                         # Multi-stage build for Flask app
+├── docs
+│   ├── deployment.md
+│   └── runbooks
 ├── LICENSE.md
-├── nginx
-│   └── conf.d                         # Configurations for domains & redirects
-│       ├── mattmccarthy.io.conf
-│       ├── mattmccarthy.local.conf
-│       ├── mattmccarthy.net.conf
-│       ├── mattmccarthy.org.conf
-│       ├── mccarthycode.com.conf
-│       └── redirect-http-to-https.conf
-└── README.md
+├── README.md
+└── scripts                            # Bot-identity tooling (see AGENTS.md)
 
-13 directories, 27 files
+7 directories, 23 files
 ```
 
 ## Prerequisites
@@ -73,37 +59,31 @@ Built with Flask backend, HTML5, CSS3, and Bootstrap. Served via Nginx in a Dock
 
 ### Running Locally
 
-Ensure you add the following line to `/etc/hosts` (or `C:\Windows\System32\drivers\etc\hosts` on Windows):
-
-```
-127.0.0.1 mattmccarthy.local www.mattmccarthy.local
-```
-
 Clone the repository and run Docker Compose.
 
 ```bash
 git clone https://github.com/mccarthycode/mmio.git
 cd mmio
-docker compose -f docker/compose.dev.yml up
+docker compose up
 ```
 
-The site will be available at [https://mattmccarthy.local](https://mattmccarthy.local).
+The site will be available at [http://localhost:8080](http://localhost:8080).
 
 To run in the background:
 
 ```bash
-docker compose -f docker/compose.dev.yml up -d
+docker compose up -d
 ```
 
 To stop:
 
 ```bash
-docker compose -f docker/compose.dev.yml down
+docker compose down
 ```
 
-## GitHub Actions
+## Deployment
 
-See [docs/actions.md](docs/actions.md).
+See [docs/deployment.md](docs/deployment.md).
 
 ## License
 

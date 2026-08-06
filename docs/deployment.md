@@ -52,4 +52,7 @@ To run in the background: `docker compose up -d`. To stop: `docker compose down`
 
 ## OpenCode
 
-For more info, look at https://github.com/McCarthyCode/mmio/issues/9.
+> [!CAUTION]
+> DEPRECATED ([#32](https://github.com/McCarthyCode/mmio/issues/32))
+
+For more info on initial implementation, see [#9](https://github.com/McCarthyCode/mmio/issues/9).

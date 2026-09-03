@@ -1,1 +1,1 @@
-@AGENTS.md
+@~/.claude/LIFEOS/DOCUMENTATION/BotIdentity/BotIdentitySystem.md

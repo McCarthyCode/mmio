@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSP lives here, not in a response header: App Platform static sites can't set custom headers. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https://cdn.jsdelivr.net https://cloudflareinsights.com; object-src 'none';">
   <meta name="description"
         content="Portfolio of Matt McCarthy, a full-stack developer based in Chicago, IL with 7+ years of experience in healthcare and commercial web applications.">
   <title>Matt McCarthy | Full-stack Developer</title>
@@ -40,10 +43,8 @@
 
   <!-- Scripts: custom -->
   <script src="{{ url_for('static', filename='color-scheme.js') }}"
-          nonce="{{ nonce }}"
           defer></script>
   <script src="{{ url_for('static', filename='tooltip.js') }}"
-          nonce="{{ nonce }}"
           defer></script>
 </head>
 

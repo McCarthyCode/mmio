@@ -1,0 +1,12 @@
+# Cloudflare Worker that serves the site's CSP as a response header with a
+# per-request nonce. Deploy with `npx wrangler deploy` from this directory.
+# See docs/runbooks/43.md.
+name = "mmio-csp"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = false
+
+routes = [
+  { pattern = "mattmccarthy.io/*", zone_name = "mattmccarthy.io" },
+  { pattern = "www.mattmccarthy.io/*", zone_name = "mattmccarthy.io" },
+]

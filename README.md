@@ -2,16 +2,16 @@
 
 Personal portfolio website for Matt McCarthy, a full-stack web developer based in Chicago, IL.
 
-Built with Flask backend, HTML5, CSS3, and Bootstrap. Deployed to DigitalOcean App Platform.
+Built with Flask, HTML5, CSS3, and Bootstrap. Deployed to DigitalOcean App Platform as a static site.
 
 ## Stack
 
 - **Frontend:** HTML5, CSS3, Bootstrap 5.3, Bootstrap Icons, Google Fonts
-- **Backend:** Python Flask with Gunicorn
-- **Container:** Docker (multi-stage build)
-- **Infrastructure:** DigitalOcean App Platform — builds directly from the `Dockerfile`
-  on every push to `main`, terminates TLS, and routes all custom domains natively (no
-  Nginx or image registry in the loop)
+- **Backend:** Python Flask, rendered to static files at build time (`app/freeze.py`)
+- **Container:** Docker, for local development
+- **Infrastructure:** DigitalOcean App Platform static site (free tier) — rebuilds on
+  every push to `main`, serves from its CDN, terminates TLS, and routes all custom
+  domains natively
 
 ## Prerequisites
 

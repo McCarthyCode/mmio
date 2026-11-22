@@ -1,28 +1,17 @@
 name: mmio
 region: nyc
 
-services:
+# A static-only app is on App Platform's free tier. The build runs Flask once
+# (app/freeze.py) and publishes the rendered files; nothing runs at request time.
+static_sites:
   - name: www
     github:
       repo: McCarthyCode/mmio
       branch: main
       deploy_on_push: true
-    dockerfile_path: Dockerfile
-    source_dir: /
-    http_port: 8080
-    instance_count: 1
-    instance_size_slug: basic-xxs
-    health_check:
-      http_path: /
-    envs:
-      - key: ENVIRONMENT
-        value: production
-      - key: APP_DEBUG
-        value: "false"
-      - key: APP_WORKERS
-        value: "4"
-      - key: LOG_LEVEL
-        value: info
+    source_dir: app
+    build_command: python freeze.py build
+    output_dir: build
 
 domains:
   - domain: mattmccarthy.io

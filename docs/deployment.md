@@ -38,12 +38,16 @@ cd app && pip install -r requirements.txt && python freeze.py build
 python -m http.server 8000 -d build
 ```
 
-To change domains or redirects, edit `app.yaml` and either
-let the next push to `main` pick it up, or apply it directly with:
+Pushing to `main` rebuilds the code against the spec App Platform already has
+stored. It doesn't read `app.yaml` from the repo. To change the components,
+domains or redirects, edit `app.yaml`, merge it, then apply it explicitly:
 
 ```bash
+doctl apps spec validate app.yaml
 doctl apps update <app-id> --spec app.yaml
 ```
+
+Until that runs, App Platform keeps using the previous spec.
 
 Validate spec changes locally before pushing:
 

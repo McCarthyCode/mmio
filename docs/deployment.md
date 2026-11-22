@@ -49,12 +49,6 @@ doctl apps update <app-id> --spec app.yaml
 
 Until that runs, App Platform keeps using the previous spec.
 
-Validate spec changes locally before pushing:
-
-```bash
-doctl apps spec validate app.yaml
-```
-
 ### History
 
 This setup replaced a manual EC2 + Nginx flow (`docker compose down && docker compose

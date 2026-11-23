@@ -17,3 +17,9 @@ dist/
 
 # SSL/TLS secrets
 /nginx/ssl
+
+# Editor config
+.vscode
+
+# LLM worktrees
+.claude

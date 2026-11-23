@@ -15,10 +15,36 @@ registry in the deploy path.
 When you add a Flask route, add it to `PAGES` in `app/freeze.py`, or it won't exist
 in production.
 
-Static sites can't set custom response headers, so the Content-Security-Policy is a
-`<meta http-equiv>` tag in `app/templates/index.html` rather than a Flask header. It no
-longer uses a per-request nonce: a nonce baked into a static file would be the same for
-every visitor, and the page has no inline scripts for one to protect.
+### Content-Security-Policy
+
+Cloudflare injects an inline JavaScript Detections script into every HTML page. It
+only adds a nonce to that script by parsing the CSP *response header*; a nonce in a
+`<meta>` tag isn't supported (see issue #1, which is why the old Flask app generated a
+nonce per request). Static sites can't set headers, so a Cloudflare Worker on the
+`mattmccarthy.io` zone does it instead (`cloudflare/csp-worker/`). For each HTML
+response it:
+
+- generates a fresh nonce;
+- removes the `<meta http-equiv="Content-Security-Policy">` tag;
+- puts the nonce on every `<script>`, including the one Cloudflare injected;
+- sends the policy as a header with `'nonce-…' 'strict-dynamic'`;
+- sets `Cache-Control: private, no-store`, so a nonce is never served twice.
+
+`'strict-dynamic'` is required: the injected script creates a second inline script
+inside a hidden iframe, which can't carry a nonce. Other responses pass through
+unchanged.
+
+The meta tag stays in `app/templates/index.html` as the policy for the DO default
+domain and local dev. When you add a script, style or font host, update both the meta
+tag and `POLICY` in `cloudflare/csp-worker/src/index.js`.
+
+Deploy the Worker from `cloudflare/csp-worker/` with `npx wrangler login` and then
+`npx wrangler deploy`. App Platform doesn't deploy it. Its routes are
+`mattmccarthy.io/*` and `www.mattmccarthy.io/*`; the redirect domains don't need it. In
+the Cloudflare dashboard, set the routes' request-limit failure mode to **Fail open**:
+past the Free plan's 100,000 requests a day, requests then skip the Worker and fall back
+to the meta tag instead of failing. To roll back, remove the routes or run
+`npx wrangler delete`.
 
 App Platform serves static sites from its CDN edge with `Cache-Control` set to 24
 hours at the edge and 10 seconds in browsers. Each deploy invalidates the edge cache.

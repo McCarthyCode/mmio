@@ -27,16 +27,19 @@ response it:
 - generates a fresh nonce;
 - removes the `<meta http-equiv="Content-Security-Policy">` tag;
 - puts the nonce on every `<script>`, including the one Cloudflare injected;
-- sends the policy as a header with `'nonce-…' 'strict-dynamic'`;
+- sends the policy as a header whose `script-src` is just `'nonce-…' 'strict-dynamic'`;
 - sets `Cache-Control: private, no-store`, so a nonce is never served twice.
 
 `'strict-dynamic'` is required: the injected script creates a second inline script
-inside a hidden iframe, which can't carry a nonce. Other responses pass through
-unchanged.
+inside a hidden iframe, and only `'strict-dynamic'` trusts scripts created by a nonced
+script. Because every `<script>` gets the nonce, the header's `script-src` has no
+`'self'` or host allowlist; browsers would ignore one next to `'strict-dynamic'`
+anyway. Other responses pass through unchanged.
 
 The meta tag stays in `app/templates/index.html` as the policy for the DO default
-domain and local dev. When you add a script, style or font host, update both the meta
-tag and `POLICY` in `cloudflare/csp-worker/src/index.js`.
+domain and local dev. When you add a style, font or connect host, update both the meta
+tag and `POLICY` in `cloudflare/csp-worker/src/index.js`. A new script host goes in the
+meta tag only; the Worker's nonce covers it.
 
 Deploy the Worker from `cloudflare/csp-worker/` with `npx wrangler login` and then
 `npx wrangler deploy`. App Platform doesn't deploy it. Its routes are

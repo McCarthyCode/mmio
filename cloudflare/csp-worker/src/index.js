@@ -9,15 +9,17 @@
 //
 // 'strict-dynamic' is needed because the injected script builds a second inline
 // script inside a hidden iframe, which can't carry a nonce. With 'strict-dynamic',
-// scripts created by a nonced script are trusted. Browsers that support it ignore
-// the host allowlist, so every <script> in the page gets the nonce. Older browsers
-// fall back to the allowlist.
+// scripts created by a nonced script are trusted. Every <script> in the page gets
+// the nonce, so script-src needs no 'self' or host allowlist. Browsers that support
+// 'strict-dynamic' ignore one anyway, and Firefox warns about each ignored entry.
 
-// Keep in sync with the <meta http-equiv="Content-Security-Policy"> tag in
-// app/templates/index.html, plus 'strict-dynamic'. NONCE is replaced per request.
+// Keep style-src, font-src and connect-src in sync with the
+// <meta http-equiv="Content-Security-Policy"> tag in app/templates/index.html.
+// script-src here is nonce-only; the meta tag keeps its host allowlist because it
+// has no nonce. NONCE is replaced per request.
 const POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'nonce-NONCE' 'strict-dynamic' https://cdn.jsdelivr.net https://static.cloudflareinsights.com",
+  "script-src 'nonce-NONCE' 'strict-dynamic'",
   "style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com",
   "font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com",
   "connect-src 'self' https://cdn.jsdelivr.net https://cloudflareinsights.com",
